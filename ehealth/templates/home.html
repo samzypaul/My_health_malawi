@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Home - My Health Malawi{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container">
+        <h1>Welcome to My Health Malawi</h1>
+        <p>Your health, our commitment to care.</p>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="/consult" class="btn btn-light me-3">Consult Doctor</a>
+            <a href="/book" class="btn btn-light">Book Appointment</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section class="py-5">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>We are dedicated to providing the best healthcare solutions in Malawi. Our mission is to ensure accessible and affordable healthcare for everyone.</p>
+        <h3>Our Mission</h3>
+        <p>To enhance the health and well-being of our community through exceptional service and care.</p>
+        <h3>Our Values</h3>
+        <ul>
+            <li>Compassion</li>
+            <li>Integrity</li>
+            <li>Excellence</li>
+        </ul>
+        <h3>What People Think About Us</h3>
+        <blockquote>
+            <p>"The best healthcare service in Malawi! Highly recommended."</p>
+            <footer>- A satisfied patient</footer>
+        </blockquote>
+    </div>
+</section>
+{% endblock %}
