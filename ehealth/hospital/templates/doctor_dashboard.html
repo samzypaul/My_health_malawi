@@ -3,19 +3,19 @@
 {% block title %}Doctor Dashboard{% endblock %}
 
 {% block sidebar %}
-<a href="{% url 'doctor_home' %}" class="nav-link {% if request.path == '/dashboard/doctor/' %}active{% endif %}">Home</a>
-<a href="{% url 'doctor_patients' %}" class="nav-link {% if request.path == '/dashboard/doctor/patients/' %}active{% endif %}">Patients</a>
-<a href="{% url 'doctor_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
-<a href="{% url 'doctor_subscription' %}" class="nav-link {% if request.path == '/dashboard/doctor/subscription/' %}active{% endif %}">Generate Subscription Code</a>
+<a href="{% url 'hospital:doctor_home' %}" class="nav-link {% if request.path == '/dashboard/doctor/' %}active{% endif %}">Home</a>
+<a href="{% url 'hospital:doctor_patients' %}" class="nav-link {% if request.path == '/dashboard/doctor/patients/' %}active{% endif %}">Patients</a>
+<a href="{% url 'hospital:doctor_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
+<a href="{% url 'hospital:doctor_subscription' %}" class="nav-link {% if request.path == '/dashboard/doctor/subscription/' %}active{% endif %}">Generate Subscription Code</a>
 {% endblock %}
 
 {% block content %}
-{% if request.path == '/dashboard/doctor/' %}
+{% if request.path == '/doctor/' %}
 <div>
     <h3>Your Dashboard</h3>
     <p>Welcome, doctor! Manage your activities from the sidebar.</p>
 </div>
-{% elif request.path == '/dashboard/doctor/patients/' %}
+{% elif request.path == 'doctor/patients/' %}
 <div>
     <h3>Patients</h3>
     <p>View and manage your patients.</p>
@@ -25,7 +25,7 @@
     <h3>Appointments</h3>
     <p>View your appointment schedule.</p>
 </div>
-{% elif request.path == '/dashboard/doctor/subscription/' %}
+{% elif request.path == 'doctor/subscription/' %}
 <div>
     <h3>Generate Subscription Code</h3>
     <form method="POST">

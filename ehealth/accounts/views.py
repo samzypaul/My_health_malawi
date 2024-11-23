@@ -85,24 +85,54 @@ from .forms import CustomAuthentificationForm
 
 #     return render(request, template, context)
 
+# def login_user(request):
+#     context = {'form': CustomAuthentificationForm()}
+
+#     if request.method == 'POST':
+#         form = CustomAuthentificationForm(request, request.POST)
+#         if form.is_valid():
+#             user = form.get_user()
+#             if user is not None:
+#                 login(request, user)
+#                 # Redirect based on user role 
+#                 if user.is_superuser:  # Superuser role
+#                     return redirect('/admin')
+#                 elif user.is_staff:  # Doctor role
+#                     return redirect('hospital:doctor_dashboard')  # Use a valid URL name for doctor dashboard
+#                 if user.is_hospital:
+#                     return redirect('hospital:hospital_dashboard')
+#                 else:  # Patient role
+#                     return redirect('hospital:patient_dashboard')  # Use a valid URL name for patient dashboard
+#             else:
+#                 print('user none')
+#                 context['error_message'] = 'Invalid credentials. Please check your username/email and password.'
+
+#     return render(request, 'login.html', context)
 def login_user(request):
     context = {'form': CustomAuthentificationForm()}
 
     if request.method == 'POST':
         form = CustomAuthentificationForm(request, request.POST)
         if form.is_valid():
-            user = form.get_user()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
                 # Redirect based on user role 
                 if user.is_superuser:  # Superuser role
                     return redirect('/admin')
                 elif user.is_staff:  # Doctor role
-                    return redirect('doctor_dashboard')  # Use a valid URL name for doctor dashboard
+                    return redirect('hospital:doctor_dashboard')  # Use a valid URL name for doctor dashboard
+                if user.is_hospital:
+                    return redirect('hospital:hospital_dashboard')
                 else:  # Patient role
-                    return redirect('patient_dashboard')  # Use a valid URL name for patient dashboard
+                    return redirect('hospital:patient_dashboard')  # Use a valid URL name for patient dashboard
             else:
+                print('User is None')
                 context['error_message'] = 'Invalid credentials. Please check your username/email and password.'
+        else:
+            print('Form is invalid')
 
     return render(request, 'login.html', context)
 

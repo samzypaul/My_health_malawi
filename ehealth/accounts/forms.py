@@ -2,6 +2,9 @@ from django import forms
 from . import models
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -40,6 +43,13 @@ class CustomAuthentificationForm(AuthenticationForm):
             'placeholder': 'Password'
         })
     )
+
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            raise forms.ValidationError(
+                'This account is inactive.',
+                code='inactive',
+            )
 
     def clean(self):
         username = self.cleaned_data.get('username')

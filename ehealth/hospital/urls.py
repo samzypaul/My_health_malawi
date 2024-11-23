@@ -1,10 +1,10 @@
 from django.urls import path
 from . import views
-
+app_name = 'hospital'
 urlpatterns = [
-    path('patient/dashboard/', views.patient_dashboard, name='patient_dashboard'),
-    path('doctor/dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
-    path('hospital/dashboard/', views.hospital_dashboard, name='hospital_dashboard'),
+    path('patient_dashboard/', views.patient_dashboard, name='patient_dashboard'),
+    path('doctor_dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
+    path('hospital_dashboard/', views.hospital_dashboard, name='hospital_dashboard'),
 #patient dashboard urls
   
     path('dashboard/patient/', views.patient_home, name='patient_home'),
@@ -14,10 +14,10 @@ urlpatterns = [
     path('dashboard/patient/subscription/', views.patient_subscription, name='patient_subscription'),
 
     #doctor dashboard urls
-     path('dashboard/doctor/', views.doctor_home, name='doctor_home'),
-    path('dashboard/doctor/patients/', views.doctor_patients, name='doctor_patients'),
-    path('dashboard/doctor/appointments/', views.doctor_appointments, name='doctor_appointments'),
-    path('dashboard/doctor/subscription/', views.doctor_subscription, name='doctor_subscription'),
+     path('doctor/', views.doctor_home, name='doctor_home'),
+    path('doctor/patients/', views.doctor_patients, name='doctor_patients'),
+    path('doctor/appointments/', views.doctor_appointments, name='doctor_appointments'),
+    path('doctor/subscription/', views.doctor_subscription, name='doctor_subscription'),
 
     #hospital dashboard urls
      path('dashboard/hospital/', views.hospital_home, name='hospital_home'),

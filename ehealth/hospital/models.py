@@ -3,6 +3,7 @@ from accounts.models import User
 
 class Hospital(models.Model):
     """Model for storing hospital information."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="hospital_profile")
     name = models.CharField(max_length=255)
     address = models.TextField()
     phone_number = models.CharField(max_length=20)
@@ -32,7 +33,7 @@ class Patient(models.Model):
 
 class Doctor(models.Model):
     """Model for doctor information."""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="doctor_profile")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="doctor_profile", null=True, blank=True)
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name="doctors")
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, related_name="doctors")
     license_number = models.CharField(max_length=50, unique=True)

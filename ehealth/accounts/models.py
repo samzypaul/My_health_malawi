@@ -73,6 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_hospital = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
@@ -87,3 +88,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
+    def get_full_name(self):
+        """Returns the first_name and last_name with a space in between."""
+        return f"{self.first_name} {self.last_name}".strip()
+
+    def __str__(self):
+        return self.get_full_name()

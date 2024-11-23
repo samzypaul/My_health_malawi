@@ -7,13 +7,13 @@ from .forms import PatientForm, DoctorForm
 def patient_dashboard(request):
     """Patient dashboard view."""
     patient = request.user.patient_profile
-    return render(request, 'hospital/patient_dashboard.html', {'patient': patient})
+    return render(request, 'patient_dashboard.html', {'patient': patient})
 
 @login_required
 def doctor_dashboard(request):
     """Doctor dashboard view."""
     doctor = request.user.doctor_profile
-    return render(request, 'hospital/doctor_dashboard.html', {'doctor': doctor})
+    return render(request, 'doctor_dashboard.html', {'doctor': doctor})
 
 @login_required
 def hospital_dashboard(request):
@@ -21,7 +21,7 @@ def hospital_dashboard(request):
     hospital = get_object_or_404(Hospital, doctors__user=request.user)
     patients = hospital.patients.all()
     doctors = hospital.doctors.all()
-    return render(request, 'hospital/hospital_dashboard.html', {
+    return render(request, 'hospital_dashboard.html', {
         'hospital': hospital,
         'patients': patients,
         'doctors': doctors
@@ -35,23 +35,23 @@ def hospital_dashboard(request):
 
 @login_required
 def patient_home(request):
-    return render(request, '/patient_dashboard.html', {'active_tab': 'home'})
+    return render(request, 'patient_dashboard.html', {'active_tab': 'home'})
 
 @login_required
 def patient_departments(request):
-    return render(request, '/patient_dashboard.html', {'active_tab': 'departments'})
+    return render(request, 'patient_dashboard.html', {'active_tab': 'departments'})
 
 @login_required
 def patient_consultation(request):
-    return render(request, '/patient_dashboard.html', {'active_tab': 'consultation'})
+    return render(request, 'patient_dashboard.html', {'active_tab': 'consultation'})
 
 @login_required
 def patient_health_records(request):
-    return render(request, '/patient_dashboard.html', {'active_tab': 'health_records'})
+    return render(request, 'patient_dashboard.html', {'active_tab': 'health_records'})
 
 @login_required
 def patient_subscription(request):
-    return render(request, '/patient_dashboard.html', {'active_tab': 'subscription'})
+    return render(request, 'patient_dashboard.html', {'active_tab': 'subscription'})
 
 
 # doctors dashboard views
@@ -68,21 +68,21 @@ def doctor_home(request):
 def doctor_patients(request):
     # Fetch patients linked to this doctor
     patients = Patient.objects.filter(doctor=request.user.doctor)
-    return render(request, 'hospital/doctor_dashboard.html', {'active_tab': 'patients', 'patients': patients})
+    return render(request, 'doctor_dashboard.html', {'active_tab': 'patients', 'patients': patients})
 
 @login_required
 def doctor_appointments(request):
     # Fetch appointments linked to this doctor
     appointments = Appointment.objects.filter(doctor=request.user.doctor)
-    return render(request, 'hospital/doctor_dashboard.html', {'active_tab': 'appointments', 'appointments': appointments})
+    return render(request, 'doctor_dashboard.html', {'active_tab': 'appointments', 'appointments': appointments})
 
 @login_required
 def doctor_subscription(request):
     if request.method == 'POST':
         # Generate a unique subscription code
         subscription_code = generate_subscription_code(request.user.doctor)
-        return render(request, 'hospital/doctor_dashboard.html', {'active_tab': 'subscription', 'subscription_code': subscription_code})
-    return render(request, 'hospital/doctor_dashboard.html', {'active_tab': 'subscription'})
+        return render(request, 'doctor_dashboard.html', {'active_tab': 'subscription', 'subscription_code': subscription_code})
+    return render(request, 'doctor_dashboard.html', {'active_tab': 'subscription'})
 
 
 #hospital views
@@ -90,17 +90,17 @@ def doctor_subscription(request):
 
 @login_required
 def hospital_home(request):
-    return render(request, 'hospital/hospital_dashboard.html', {'active_tab': 'home'})
+    return render(request, 'hospital_dashboard.html', {'active_tab': 'home'})
 
 @login_required
 def hospital_manage_doctors(request):
     doctors = Doctor.objects.filter(hospital=request.user.hospitaladmin.hospital)
-    return render(request, 'hospital/hospital_dashboard.html', {'active_tab': 'manage_doctors', 'doctors': doctors})
+    return render(request, 'hospital_dashboard.html', {'active_tab': 'manage_doctors', 'doctors': doctors})
 
 @login_required
 def hospital_manage_patients(request):
     patients = Patient.objects.filter(hospital=request.user.hospitaladmin.hospital)
-    return render(request, 'hospital/hospital_dashboard.html', {'active_tab': 'manage_patients', 'patients': patients})
+    return render(request, 'hospital_dashboard.html', {'active_tab': 'manage_patients', 'patients': patients})
 
 @login_required
 def hospital_analytics(request):
