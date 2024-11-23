@@ -6,16 +6,17 @@ from django.contrib.auth import get_user_model
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = models.User
-        fields = ('email', 'first_name', 'last_name', 'username', 'phone_number', 'role','password1','password2')
+        fields = ('email', 'first_name', 'last_name','profile_photo', 'username', 'phone_number', 'user_type','password1','password2')
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Username'}),
             'email': forms.EmailInput(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Email'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'First name'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Last Name'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Phone No.'}),
-            'role': forms.Select(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Select Role'}),
+            'user_type': forms.Select(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Select Role'}),
             'password1': forms.Select(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Enter Password'}),
             'password2': forms.Select(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Confirm Password'}),
+            'profile_photo': forms.Select(attrs={'class': 'form-control bg-transparent w-[400px] px-2 py-2 border-2 border-gray-500 rounded-lg', 'placeholder':'Upload your photo'}),
         }
 
         def clean_password2(self):

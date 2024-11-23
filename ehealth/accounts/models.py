@@ -45,6 +45,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         (ADMIN, 'admin'),
         (DOCTOR, 'doctor'),
         (PATIENT, 'patient'),
+    )   
+    USER_TYPES = (
+        ('patient', 'Patient'),
+        ('doctor', 'Doctor'),
+        ('hospital_admin', 'Hospital Admin'),
+        ('superuser', 'Superuser'),
     )
 
     first_name = models.CharField(max_length=50)
@@ -53,9 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Use username or email for authentication based on your setup
     username = models.CharField(max_length=50, unique=True)  # Optional if using email
     email = models.EmailField(unique=True)  # Required for email authentication
-
+    profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
     phone_number = models.CharField(max_length=30, blank=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, default=3)
+    user_type = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, default=3)
 
     # Django required fields
     date_joined = models.DateTimeField(auto_now_add=True)

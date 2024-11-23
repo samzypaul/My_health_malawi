@@ -1,0 +1,40 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block sidebar %}
+<a href="{% url 'patient_home' %}" class="nav-link {% if request.path == '/dashboard/patient/' %}active{% endif %}">Home</a>
+<a href="{% url 'patient_departments' %}" class="nav-link {% if request.path == '/dashboard/patient/departments/' %}active{% endif %}">Departments</a>
+<a href="{% url 'patient_consultation' %}" class="nav-link {% if request.path == '/dashboard/patient/consultation/' %}active{% endif %}">Consultation</a>
+<a href="{% url 'patient_health_records' %}" class="nav-link {% if request.path == '/dashboard/patient/health_records/' %}active{% endif %}">Health Records</a>
+<a href="{% url 'patient_subscription' %}" class="nav-link {% if request.path == '/dashboard/patient/subscription/' %}active{% endif %}">Subscription</a>
+{% endblock %}
+
+{% block content %}
+{% if request.path == '/dashboard/patient/' %}
+<div>
+    <h3>Your Dashboard</h3>
+    <p>Welcome! Select an option from the sidebar to begin.</p>
+</div>
+{% elif request.path == '/dashboard/patient/departments/' %}
+<div>
+    <h3>Departments</h3>
+    <p>List of hospital departments.</p>
+</div>
+{% elif request.path == '/dashboard/patient/consultation/' %}
+<div>
+    <h3>Consultation</h3>
+    <p>Schedule or join consultations here.</p>
+</div>
+{% elif request.path == '/dashboard/patient/health_records/' %}
+<div>
+    <h3>Health Records</h3>
+    <p>View your medical records.</p>
+</div>
+{% elif request.path == '/dashboard/patient/subscription/' %}
+<div>
+    <h3>Subscription</h3>
+    <p>Manage your hospital subscriptions.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "dashboard_base.html" %}
+
+{% block title %}Hospital Dashboard{% endblock %}
+
+{% block sidebar %}
+<a href="{% url 'hospital_home' %}" class="nav-link {% if request.path == '/dashboard/hospital/' %}active{% endif %}">Home</a>
+<a href="{% url 'hospital_manage_doctors' %}" class="nav-link {% if request.path == '/dashboard/hospital/manage-doctors/' %}active{% endif %}">Manage Doctors</a>
+<a href="{% url 'hospital_manage_patients' %}" class="nav-link {% if request.path == '/dashboard/hospital/manage-patients/' %}active{% endif %}">Manage Patients</a>
+<a href="{% url 'hospital_analytics' %}" class="nav-link {% if request.path == '/dashboard/hospital/analytics/' %}active{% endif %}">Analytics</a>
+{% endblock %}
+
+{% block content %}
+{% if request.path == '/dashboard/hospital/' %}
+<div>
+    <h3>Your Dashboard</h3>
+    <p>Welcome, admin! Manage hospital operations here.</p>
+</div>
+{% elif request.path == '/dashboard/hospital/manage-doctors/' %}
+<div>
+    <h3>Manage Doctors</h3>
+    <p>View and manage registered doctors.</p>
+</div>
+{% elif request.path == '/dashboard/hospital/manage-patients/' %}
+<div>
+    <h3>Manage Patients</h3>
+    <p>View and manage registered patients.</p>
+</div>
+{% elif request.path == '/dashboard/hospital/analytics/' %}
+<div>
+    <h3>Hospital Analytics</h3>
+    <p>View analytics and insights about the hospital's performance.</p>
+</div>
+{% endif %}
+{% endblock %}
