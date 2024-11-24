@@ -6,7 +6,8 @@
 <a href="{% url 'hospital:doctor_home' %}" class="nav-link {% if request.path == '/dashboard/doctor/' %}active{% endif %}">Home</a>
 <a href="{% url 'hospital:doctor_patients' %}" class="nav-link {% if request.path == '/dashboard/doctor/patients/' %}active{% endif %}">Patients</a>
 <a href="{% url 'hospital:doctor_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
-<a href="{% url 'hospital:doctor_subscription' %}" class="nav-link {% if request.path == '/dashboard/doctor/subscription/' %}active{% endif %}">Generate Subscription Code</a>
+<a href="{% url 'subscriptions:generate_code' %}" class="nav-link {% if request.path == '/subscriptions/generate_code' %}active{% endif %}">Generate Subscription Code</a>
+
 {% endblock %}
 
 {% block content %}

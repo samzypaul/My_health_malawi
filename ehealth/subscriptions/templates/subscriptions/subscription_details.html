@@ -1,0 +1,15 @@
+{% extends 'patient_dashboard.html' %}
+<h1>My Subscription</h1>
+{% block content %}
+{% if subscription_code %}
+    <p>Code: {{ subscription_code.code }}</p>
+    <p>Plan: {{ subscription_code.plan.plan_offer }}</p>
+    <p>Plan Details: {{ subscription_code.plan.description }}</p>
+    <p>Price: ${{ subscription_code.plan.price }}</p>
+    <p>Created By: {{ subscription_code.created_by.username }}</p>
+    <p>Used On: {{ subscription_code.created_at }}</p>
+{% else %}
+    <p>You do not have an active subscription. Please redeem a code.</p>
+    <a href="{% url 'subscriptions:redeem_code' %}">Redeem Subscription Code</a>
+{% endif %}
+{% endblock  %}

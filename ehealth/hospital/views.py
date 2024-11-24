@@ -6,7 +6,7 @@ from .forms import PatientForm, DoctorForm
 @login_required
 def patient_dashboard(request):
     """Patient dashboard view."""
-    patient = request.user.patient_profile
+    patient = request.user
     return render(request, 'patient_dashboard.html', {'patient': patient})
 
 @login_required

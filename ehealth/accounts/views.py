@@ -122,11 +122,11 @@ def login_user(request):
                 # Redirect based on user role 
                 if user.is_superuser:  # Superuser role
                     return redirect('/admin')
-                elif user.is_staff:  # Doctor role
+                elif user.is_doctor:  # Doctor role
                     return redirect('hospital:doctor_dashboard')  # Use a valid URL name for doctor dashboard
-                if user.is_hospital:
+                elif user.is_hospital:
                     return redirect('hospital:hospital_dashboard')
-                else:  # Patient role
+                elif user.is_patient:  # Patient role
                     return redirect('hospital:patient_dashboard')  # Use a valid URL name for patient dashboard
             else:
                 print('User is None')

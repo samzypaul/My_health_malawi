@@ -1,0 +1,11 @@
+{% extends 'patient_dashboard.html' %}
+{% block content %}
+<h1>Redeem Subscription Code</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Redeem</button>
+</form>
+<a href="{% url 'subscriptions:subscription_details' %}">Back to Subscription Details</a>
+
+{% endblock  %}

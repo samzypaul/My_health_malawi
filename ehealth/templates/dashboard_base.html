@@ -48,7 +48,7 @@
 <body>
     <div class="sidebar">
         <div class="profile">
-            <img src="{% static 'profile_placeholder.png' %}" alt="Profile Photo">
+            <img src="{{ user.get_profile_photo }}" alt="Profile Photo">
             <h5>{{ user.get_full_name }}</h5>
         </div>
         <nav class="nav flex-column">

@@ -32,18 +32,18 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'user_type', 'is_active', 'is_staff')
-    list_filter = ('is_active', 'user_type', 'is_staff', 'is_superuser', 'date_joined','is_admin','is_hospital')
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'role', 'is_active', 'is_staff')
+    list_filter = ('is_active', 'is_staff', 'is_superuser', 'date_joined','is_admin','is_hospital')
     search_fields = ('email', 'first_name', 'last_name', 'username', 'phone_number')
     ordering = ('date_joined',)
 
-    readonly_fields = ('date_joined', 'last_login',)  # Mark non-editable fields as readonly
+    readonly_fields = ('date_joined', 'last_login',)  #  non-editable fields as readonly
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'phone_number', 'profile_photo')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_admin','is_hospital','groups', 'user_permissions',)}),
-        ('Roles', {'fields': ('user_type',)}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_admin','is_hospital','is_doctor','is_patient','groups', 'user_permissions')}),
+        ('Roles', {'fields': ('role',)}),
         ('Important Dates', {'fields': ('last_login', 'date_joined')}),  # Keep here but as readonly
     )
 

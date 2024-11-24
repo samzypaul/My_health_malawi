@@ -1,0 +1,28 @@
+{% extends 'doctor_dashboard.html' %}
+
+{% block content %}
+<h1>Generate Subscription Code</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generate Code</button>
+</form>
+
+{% if generated_code %}
+<div style="margin-top: 20px;">
+    <h2>Generated Code:</h2>
+    <p id="generatedCode" style="font-size: 20px; font-weight: bold;">{{ generated_code }}</p>
+    <button onclick="copyCode()">Copy Code</button>
+</div>
+<script>
+    function copyCode() {
+        const code = document.getElementById('generatedCode').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            alert('Code copied to clipboard!');
+        });
+    }
+</script>
+{% endif %}
+
+<a href="{% url 'subscriptions:subscription_details' %}">Back to Subscription Details</a>
+{% endblock %}

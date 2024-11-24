@@ -41,12 +41,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     DOCTOR = 2
     PATIENT = 3
 
+    # ROLE_CHOICE = (
+    #     (ADMIN, 'admin'),
+    #     (DOCTOR, 'doctor'),
+    #     (PATIENT, 'patient'),
+    # ) 
+    #   
     ROLE_CHOICE = (
-        (ADMIN, 'admin'),
-        (DOCTOR, 'doctor'),
-        (PATIENT, 'patient'),
-    )   
-    USER_TYPES = (
         ('patient', 'Patient'),
         ('doctor', 'Doctor'),
         ('hospital_admin', 'Hospital Admin'),
@@ -61,7 +62,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)  # Required for email authentication
     profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
     phone_number = models.CharField(max_length=30, blank=True)
-    user_type = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, default=3)
+    role = models.CharField(max_length=50,choices=ROLE_CHOICE, blank=True, default='patient')
 
     # Django required fields
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -74,6 +75,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_hospital = models.BooleanField(default=False)
+    is_doctor = models.BooleanField(default=False)
+    is_patient = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
