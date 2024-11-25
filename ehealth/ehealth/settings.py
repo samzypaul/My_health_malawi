@@ -44,8 +44,27 @@ INSTALLED_APPS = [
     'chat',
     'appointments',
     'subscriptions',
+    'channels',
     
 ]
+
+
+
+
+ASGI_APPLICATION = 'ehealth.asgi.application'
+
+# Redis settings (for real-time communication)
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],  # I will update when hosted  if Redis is hosted remotely
+        },
+    },
+}
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

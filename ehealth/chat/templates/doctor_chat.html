@@ -1,0 +1,11 @@
+{% extends 'doctor_dashboard.html' %}
+{% block content_dash %}
+<h3>Patients</h3>
+<ul>
+    {% for patient in patients %}
+        <li>
+            <a href="{% url 'chat:chat_view' patient.id   %}">{{ patient.get_full_name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock  %}

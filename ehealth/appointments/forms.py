@@ -11,3 +11,8 @@ class AppointmentForm(forms.ModelForm):
             'time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
             'reason': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+
+class AppointmentStatusUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = ['status']

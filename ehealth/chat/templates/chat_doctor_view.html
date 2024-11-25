@@ -1,0 +1,38 @@
+{% extends 'doctor_dashboard.html' %}
+{% block content_dash %}
+<h3 class="text-dark">Chat with {{ recipient.get_full_name }}</h3>
+<div class="container bg-dark bordered border">
+    <div class="chat-box container bg-white bordered border">
+        {% for message in messages %}
+            <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+                <p><strong>
+                    {% if message.sender == request.user %}
+                        Me
+                    {% else %}
+                        {{ message.sender.get_full_name }}
+                    {% endif %}
+                </strong></p>
+                <p>{{ message.message_text }}</p>
+                <i class="timestamp">{{ message.timestamp|date:"Y-m-d H:i" }}</i>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<hr>
+
+<!-- Pagination Controls -->
+<div class="pagination-controls">
+    {% if messages.has_previous %}
+        <a href="?page={{ messages.previous_page_number }}" class="btn btn-secondary">Older Messages</a>
+    {% endif %}
+    {% if messages.has_next %}
+        <a href="?page={{ messages.next_page_number }}" class="btn btn-secondary">Newer Messages</a>
+    {% endif %}
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+{% endblock %}

@@ -5,6 +5,8 @@
 {% block sidebar %}
 <a href="{% url 'hospital:patient_home' %}" class="nav-link {% if request.path == '/dashboard/patient/' %}active{% endif %}">Home</a>
 <a href="{% url 'appointments:book_appointment' %}" class="nav-link {% if request.path == '/dashboard/patient/' %}active{% endif %}">Book Appointments</a>
+<a href="{% url 'appointments:patient_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
+<a href="{% url 'chat:patient_chat' %}" class="nav-link {% if request.path == '/dashboard/patient/' %}active{% endif %}">Chat Doctor</a>
 <a href="{% url 'hospital:patient_departments' %}" class="nav-link {% if request.path == '/dashboard/patient/departments/' %}active{% endif %}">Departments</a>
 <a href="{% url 'hospital:patient_consultation' %}" class="nav-link {% if request.path == '/dashboard/patient/consultation/' %}active{% endif %}">Consultation</a>
 <a href="{% url 'hospital:patient_health_records' %}" class="nav-link {% if request.path == '/dashboard/patient/health_records/' %}active{% endif %}">Health Records</a>
@@ -12,7 +14,7 @@
 <a href="{% url 'subscriptions:subscription_details' %}" class="nav-link {% if request.path == '/dashboard/patient/health_records/' %}active{% endif %}">My Subscription</a>
 {% endblock %}
 
-{% block content %}
+{% block content_dash %}
 {% if request.path == '/dashboard/patient/' %}
 <div>
     <h3>Your Dashboard</h3>

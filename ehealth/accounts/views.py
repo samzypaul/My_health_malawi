@@ -140,7 +140,7 @@ def login_user(request):
 @login_required
 def logout_user(request):
     logout(request)
-    return redirect('/accountslogin')
+    return redirect('accounts:login')
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -159,7 +159,7 @@ def contact_us(request):
             subject=f"New Contact Us Message from {name}",
             message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.CONTACT_EMAIL],  # Replace with your email
+            recipient_list=['samzypaul@gmail.com'],  # Replace with your email
         )
 
         return HttpResponse("<h3>Thank you for contacting us. We'll get back to you shortly.</h3>")

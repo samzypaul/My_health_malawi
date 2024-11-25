@@ -5,12 +5,14 @@
 {% block sidebar %}
 <a href="{% url 'hospital:doctor_home' %}" class="nav-link {% if request.path == '/dashboard/doctor/' %}active{% endif %}">Home</a>
 <a href="{% url 'hospital:doctor_patients' %}" class="nav-link {% if request.path == '/dashboard/doctor/patients/' %}active{% endif %}">Patients</a>
-<a href="{% url 'hospital:doctor_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
+
+<a href="{% url 'chat:doctor_chat'%}" class="nav-link {% if request.path == '/dashboard/doctor/patients/' %}active{% endif %}">Chat</a>
+<a href="{% url 'appointments:doctor_appointments' %}" class="nav-link {% if request.path == '/dashboard/doctor/appointments/' %}active{% endif %}">Appointments</a>
 <a href="{% url 'subscriptions:generate_code' %}" class="nav-link {% if request.path == '/subscriptions/generate_code' %}active{% endif %}">Generate Subscription Code</a>
 
 {% endblock %}
 
-{% block content %}
+{% block content_dash %}
 {% if request.path == '/doctor/' %}
 <div>
     <h3>Your Dashboard</h3>

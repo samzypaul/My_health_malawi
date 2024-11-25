@@ -1,22 +1,24 @@
-{% extends "layout.html" %}
-{% block content %}
-<div class="container mt-5">
-    <h3>Chat with {{ recipient.get_full_name }}</h3>
-    <div class="chat-box mb-3 p-3 border rounded bg-light" style="height: 400px; overflow-y: scroll;">
-        {% for message in messages %}
-            <div class="mb-2 {% if message.sender == request.user %}text-end{% endif %}">
-                <span class="badge {% if message.sender == request.user %}bg-primary{% else %}bg-secondary{% endif %}">
-                    {{ message.sender.get_full_name }}
-                </span>
-                <p>{{ message.message }}</p>
-                <small>{{ message.timestamp }}</small>
-            </div>
-        {% endfor %}
-    </div>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary mt-2">Send</button>
-    </form>
+
+{% extends 'dashboard_base.html' %}
+{% block content_dash %}
+<h3>Chat with {{ recipient.get_full_name }}</h3>
+
+<div class="chat-box">
+    {% for message in messages %}
+        <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+            <p><strong>{{ message.sender.get_full_name }}</strong></p>
+            <p>{{ message.message_text }}</p>
+            <p class="timestamp">{{ message.timestamp|date:"Y-m-d H:i" }}</p>
+        </div>
+    {% endfor %}
 </div>
+
+<hr>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+
 {% endblock %}
